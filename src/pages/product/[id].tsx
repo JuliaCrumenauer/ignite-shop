@@ -5,6 +5,7 @@ import Stripe from "stripe";
 import { stripe } from "../../lib/stripe";
 import { ImageContainer, ProductContainer, ProductDetails } from "../../styles/pages/product"
 import { useState } from "react";
+import Head from "next/head";
 interface ProductProps {
   product: {
     id: string
@@ -36,6 +37,11 @@ export default function Product({ product }: ProductProps) {
       }
     }
   return (
+    <>
+      <Head>
+        <title>{product.name} | Ignite Shop</title>
+      </Head>
+
     <ProductContainer>
       <ImageContainer>
         <Image src={product.imageUrl} width={520} height={480} alt="" />
@@ -49,6 +55,7 @@ export default function Product({ product }: ProductProps) {
         </button>
       </ProductDetails>
     </ProductContainer>
+    </>
   )
 }
 export const getStaticPaths: GetStaticPaths = async () => {
